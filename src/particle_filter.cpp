@@ -260,7 +260,7 @@ void ParticleFilter::resample() {
   // Reference: https://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
   std::random_device rd;
   std::mt19937 gen(rd());
-  std::discrete_distribution<> d(weights.begin(), weights.end());
+  std::discrete_distribution<> d(part_weights.begin(), part_weights.end());
   
   // Declare Index variable
   int resampled_index;
