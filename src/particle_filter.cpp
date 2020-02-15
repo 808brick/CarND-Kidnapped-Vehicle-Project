@@ -212,7 +212,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
     
         // Loop through eaprediction for the current observation landmark
         for (int m=0; m < landmark_predictions.size(); m++) {
-          if (landmark_predictions[m].id == transformed_obs[i].id) {
+          if (landmark_predictions[m].id == transformed_obs[l].id) {
           	pred_x = landmark_predictions[m].x; 
             pred_y = landmark_predictions[m].y; 
           }
@@ -229,7 +229,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
         
 
       	// Update theight of the particle
-      	particles[i].weight = observation_weight;
+      	particles[i].weight *= observation_weight;
      
         
       } // End of transformed observed landmark loop
@@ -239,7 +239,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 void ParticleFilter::resample() {
   /**
    // * TODO: Resample particles with replacement with probabi// lity proportional 
-   *   to thei// r weight. 
+   *   to their weight. 
    * NOTE: You may find std::discrete_distribution helpful here.
    *   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
    */
