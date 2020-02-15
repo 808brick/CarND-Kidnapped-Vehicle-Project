@@ -182,6 +182,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
         landmark_predictions.push_back(LandmarkObs{ land_id, land_x, land_y });
         
       }
+    }
       
       // Create a vector for the transform// ed landmark prediction in map coordinates
       vector<LandmarkObs> transformed_obs;
@@ -191,10 +192,10 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
       for (int k = 0; k < observations.size(); k++){
        
         // Transform Equations Derived from transm matrix
-        float transformed_x = cos(part_theta)*observations[j].x - sin(part_theta)*observations[j].y + part_x;
-        float transformed_y = sin(part_theta)*observations[j].x + cos(part_theta)*observations[j].y + part_y;
+        float transformed_x = cos(part_theta)*observations[k].x - sin(part_theta)*observations[k].y + part_x;
+        float transformed_y = sin(part_theta)*observations[k].x + cos(part_theta)*observations[k].y + part_y;
 
-        transformed_obs.push_back(LandmarkObs{observations[j].id, transformed_x, transformed_y});
+        transformed_obs.push_back(LandmarkObs{observations[k].id, transformed_x, transformed_y});
       }
       
       // Match predicted measurements with closestansformed measuremnts. 
@@ -256,9 +257,6 @@ void ParticleFilter::resample() {
   }
   
   // Sort out the max weight in the particle weights vector
-  double* max_weight;
-  max_weight = max_element(part_weights.begin(), part_weights.end());
-  
   // Reference: https://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
   std::random_device rd;
   std::mt19937 gen(rd());
