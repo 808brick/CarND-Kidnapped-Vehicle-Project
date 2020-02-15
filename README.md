@@ -61,4 +61,6 @@ Now run the following terminal commands in the project root directory:
 ./run.sh
 ```
 
-Now begin the simulation and watch the localization results. 
+Now begin the simulation and watch the localization results. The blue ring around the car simulates the particle filter's guess of where on the map the car is.
+
+![Simulation GIF](images/kidnapped_vehicle_2.gif)
